@@ -1,5 +1,5 @@
 from __future__ import annotations
-from agentverse.logging import logger
+from agentverse.my_logging import logger
 
 from abc import abstractmethod
 from typing import TYPE_CHECKING, Any, Dict, List

@@ -10,7 +10,7 @@ from tenacity import retry, stop_after_attempt, wait_exponential
 from pydantic import BaseModel, Field
 
 from agentverse.llms.base import LLMResult
-from agentverse.logging import logger
+from agentverse.my_logging import logger
 from agentverse.message import Message
 
 from . import llm_registry, LOCAL_LLMS

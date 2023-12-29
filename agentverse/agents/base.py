@@ -6,7 +6,7 @@ from string import Template
 from pydantic import BaseModel, Field
 from agentverse.llms import BaseLLM
 
-from agentverse.logging import logger
+from agentverse.my_logging import logger
 from agentverse.llms.utils import count_string_tokens
 from agentverse.memory import BaseMemory, ChatHistoryMemory
 from agentverse.message import Message

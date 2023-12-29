@@ -6,7 +6,9 @@ import re
 import time
 import json
 import abc
-from logging import LogRecord
+
+LogRecord = logging.LogRecord
+
 from typing import Any, List
 
 from colorama import Fore, Style

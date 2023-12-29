@@ -6,7 +6,7 @@ import multiprocessing
 from typing import TYPE_CHECKING, Any, List, Tuple
 
 from agentverse.agents import ExecutorAgent
-from agentverse.logging import logger
+from agentverse.my_logging import logger
 from agentverse.message import ExecutorMessage, SolverMessage
 
 from . import BaseExecutor, executor_registry

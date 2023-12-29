@@ -2,7 +2,7 @@
 
 import tiktoken
 from typing import List, Union, Dict
-from agentverse.logging import logger
+from agentverse.my_logging import logger
 from agentverse.message import Message
 from agentverse.llms import LOCAL_LLMS, LOCAL_LLMS_MAPPING
 

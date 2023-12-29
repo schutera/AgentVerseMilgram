@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING, Any, List, Optional
 
 from . import order_registry as OrderRegistry
 from .base import BaseOrder
-from agentverse.logging import logger
+from agentverse.my_logging import logger
 
 if TYPE_CHECKING:
     from agentverse.environments import BaseEnvironment
