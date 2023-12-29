@@ -15,7 +15,7 @@ if TYPE_CHECKING:
     from agentverse.environments.base import BaseEnvironment
 
 
-class PrisonerDilemaAgent(BaseAgent):
+class MilgramAgent(BaseAgent):
     def step(
         self,
         environment: BaseEnvironment,

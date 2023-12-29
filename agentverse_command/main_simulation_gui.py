@@ -4,7 +4,7 @@ from agentverse.gui import GUI
 from argparse import ArgumentParser
 
 parser = ArgumentParser()
-parser.add_argument("--task", type=str, default="simulation/nlp_classroom_9players")
+parser.add_argument("--task", type=str, default="simulation/milgram")
 parser.add_argument(
     "--tasks_dir",
     type=str,
@@ -22,7 +22,7 @@ parser.add_argument("--server_name",
 args = parser.parse_args()
 
 def cli_main():
-    ui = GUI(args.task, args.tasks_dir,ui_kwargs={"share":args.share,"server_name":args.server_name})
+    ui = GUI(args.task, args.tasks_dir, ui_kwargs={"share":args.share,"server_name":args.server_name})
     ui.launch()
 
 
