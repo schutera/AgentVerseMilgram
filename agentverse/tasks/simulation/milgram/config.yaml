@@ -56,7 +56,7 @@ environment:
       type: milgram
 
 agents:
-  - agent_type: authority
+  - agent_type: experimenter
     name: Experimenter
     role_description: |-
       You are the Experimenter in charge of this session.

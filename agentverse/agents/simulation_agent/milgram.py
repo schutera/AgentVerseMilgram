@@ -5,9 +5,6 @@ from typing import TYPE_CHECKING, List
 
 from agentverse.message import Message
 from agentverse.my_logging import logger
-
-# from . import agent_registry
-# from .base import BaseAgent
 from agentverse.agents import agent_registry
 from agentverse.agents.base import BaseAgent
 
@@ -35,7 +32,7 @@ class MilgramAgent(BaseAgent):
                 continue
 
         if parsed_response is None:
-            logger.error(f"{self.name} failed to generate valid response.")
+            logger.error(f"{self.name} failed to generate a valid response.")
 
         message = Message(
             content=""
@@ -64,7 +61,7 @@ class MilgramAgent(BaseAgent):
                 continue
 
         if parsed_response is None:
-            logger.error(f"{self.name} failed to generate valid response.")
+            logger.error(f"{self.name} failed to generate a valid response.")
 
         message = Message(
             content=""
@@ -78,7 +75,7 @@ class MilgramAgent(BaseAgent):
     def _fill_prompt_template(self, env_description: str = "") -> str:
         """Fill the placeholders in the prompt template
 
-        In the conversation agent, three placeholders are supported:
+        In the conversation agent, four placeholders are supported:
         - ${agent_name}: the name of the agent
         - ${env_description}: the description of the environment
         - ${role_description}: the description of the role of the agent
@@ -101,14 +98,12 @@ class MilgramAgent(BaseAgent):
         # TODO: reset receiver
 
 
-@agent_registry.register("police")
-class PoliceAgent(PrisonerDilemaAgent):
-    interrogating_form: str
-
+@agent_registry.register("experimenter")
+class ExperimenterAgent(MilgramAgent):
     def _fill_prompt_template(self, env_description: str = "") -> str:
         """Fill the placeholders in the prompt template
 
-        In the conversation agent, three placeholders are supported:
+        In the conversation agent, four placeholders are supported:
         - ${agent_name}: the name of the agent
         - ${env_description}: the description of the environment
         - ${role_description}: the description of the role of the agent
@@ -133,15 +128,12 @@ class PoliceAgent(PrisonerDilemaAgent):
         return Template(self.prompt_template).safe_substitute(input_arguments)
 
 
-@agent_registry.register("prisoner")
-class PrisonerAgent(PrisonerDilemaAgent):
-    personality: str
-    relationship_with_another: str
-
+@agent_registry.register("teacher")
+class TeacherAgent(MilgramAgent):
     def _fill_prompt_template(self, env_description: str = "") -> str:
         """Fill the placeholders in the prompt template
 
-        In the conversation agent, three placeholders are supported:
+        In the conversation agent, four placeholders are supported:
         - ${agent_name}: the name of the agent
         - ${env_description}: the description of the environment
         - ${role_description}: the description of the role of the agent
@@ -154,14 +146,25 @@ class PrisonerAgent(PrisonerDilemaAgent):
             "chat_history": self.memory.to_string(add_sender_prefix=True),
         }
 
-        role_argument = {
-            "personality": self.personality,
-            "relationship_with_another": self.relationship_with_another,
-        }
+        return Template(self.prompt_template).safe_substitute(input_arguments)
 
-        role_description = Template(self.role_description).safe_substitute(
-            role_argument
-        )
-        input_arguments["role_description"] = role_description
+
+@agent_registry.register("learner")
+class LearnerAgent(MilgramAgent):
+    def _fill_prompt_template(self, env_description: str = "") -> str:
+        """Fill the placeholders in the prompt template
+
+        In the conversation agent, four placeholders are supported:
+        - ${agent_name}: the name of the agent
+        - ${env_description}: the description of the environment
+        - ${role_description}: the description of the role of the agent
+        - ${chat_history}: the chat history of the agent
+        """
+        input_arguments = {
+            "agent_name": self.name,
+            "env_description": env_description,
+            "role_description": self.role_description,
+            "chat_history": self.memory.to_string(add_sender_prefix=True),
+        }
 
         return Template(self.prompt_template).safe_substitute(input_arguments)
