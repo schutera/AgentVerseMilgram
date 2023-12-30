@@ -1,5 +1,5 @@
 import asyncio
-import logging
+import my_logging
 from typing import Any, Dict, List
 
 # from agentverse.agents.agent import Agent
@@ -13,7 +13,7 @@ from .. import env_registry as EnvironmentRegistry
 from .basic import BasicEnvironment
 
 
-@EnvironmentRegistry.register("prisoner_dilemma")
+@EnvironmentRegistry.register("milgram")
 class PrisonerDilemmaEnvironment(BasicEnvironment):
     """
     An environment for prisoner dilemma.

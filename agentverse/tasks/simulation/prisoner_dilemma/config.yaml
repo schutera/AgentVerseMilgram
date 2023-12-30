@@ -1,6 +1,6 @@
 prompts:
   prompt: &prompt |-
-    You are now simultating a famous experiments called Milgram experiment.
+    You are now simultating a famous experiments called Prisoners' dilemma.
 
     There are three people (Police, Suspect1, Suspect2) in the scene.
 
